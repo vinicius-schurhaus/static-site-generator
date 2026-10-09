@@ -55,7 +55,7 @@ The generated website is placed in `docs/` and uses the repository's base path.
 
 ## Live Site
 
-[View the published site](YOUR_GITHUB_PAGES_URL)
+[View the published site](https://vinicius-schurhaus.github.io/static-site-generator/)
 
 ## About
 
