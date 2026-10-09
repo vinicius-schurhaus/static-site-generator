@@ -96,7 +96,7 @@ class TestTextNodeToHTMLNode(unittest.TestCase):
             html_node,
             LeafNode(
                 "img",
-                None,
+                "",
                 {
                     "src": "https://example.com/image.png",
                     "alt": "An image",

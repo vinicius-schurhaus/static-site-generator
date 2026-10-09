@@ -231,6 +231,16 @@ class TestMarkdownToHTMLNode(unittest.TestCase):
             "<div><h2>This is <b>bold</b> and <i>italic</i></h2></div>",
         )
 
+    def test_image(self):
+        markdown = "![Tolkien](images/tolkien.png)"
+
+        node = markdown_to_html_node(markdown)
+
+        self.assertEqual(
+            node.to_html(),
+            '<div><p><img src="images/tolkien.png" alt="Tolkien"></p></div>',
+        )
+
     def test_unordered_list(self):
         markdown = "- First item\n- Second item"
 
@@ -305,6 +315,25 @@ class TestMarkdownToHTMLNode(unittest.TestCase):
                 "</div>"
             ),
         )
+
+
+class TestExtractTitle(unittest.TestCase):
+    def test_extract_title(self):
+        markdown = "# Hello"
+        self.assertEqual(extract_title(markdown), "Hello")
+
+    def test_extract_title_with_whitespace(self):
+        markdown = "#   Hello World   "
+        self.assertEqual(extract_title(markdown), "Hello World")
+
+    def test_extract_title_with_multiple_blocks(self):
+        markdown = "# Hello\n\nThis is a paragraph."
+        self.assertEqual(extract_title(markdown), "Hello")
+
+    def test_extract_title_missing(self):
+        markdown = "This has no title."
+        with self.assertRaises(ValueError):
+            extract_title(markdown)
 
 
 if __name__ == "__main__":
